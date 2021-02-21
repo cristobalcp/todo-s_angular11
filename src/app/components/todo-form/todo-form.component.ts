@@ -6,7 +6,7 @@ import { Todo } from '../../models/todo';
 import { DocumentReference } from '@angular/fire/firestore';
 import { TodoViewModel } from 'src/app/models/todo-view-model';
 import { AngularFireAuth } from '@angular/fire/auth';
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 
 
 // Decorator, metadata
@@ -34,17 +34,13 @@ export class TodoFormComponent implements OnInit {
     private afAuth: AngularFireAuth) { }
 
   ngOnInit() {
-
     if (!this.createMode) { this.loadTodo(this.todo); }
     
     this.afAuth.user.subscribe((user) => {
       if (user) {
         this.user = user;
       }
-    })
-
-    console.log("Hola, user: ", this.user);
-    
+    });    
   }
   loadTodo(todo) {
     this.todoForm.patchValue(todo);
@@ -52,14 +48,12 @@ export class TodoFormComponent implements OnInit {
   saveTodo() {
     // Validacion del formulario
     if (this.todoForm.invalid) {
-      return console.log('Formulario incorrectio');
+      return;
     }
 
     // Modo Creacion Todo
     if (this.createMode) {
-      // Extraemos los datos del formulario
-      console.log(this.user);
-      
+      // Extraemos los datos del formulario      
       let todo: Todo = this.todoForm.value;
       todo.lastModifiedDate = new Date();
       todo.createdDate = new Date();

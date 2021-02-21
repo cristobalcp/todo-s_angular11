@@ -11,6 +11,7 @@ import * as firebase from 'firebase/app';
 })
 
 export class LoginComponent implements OnInit {
+  public isActive: boolean = false;
   errorMessage = '';
   constructor(private afAuth: AngularFireAuth,
     private router: Router,
@@ -42,7 +43,7 @@ export class LoginComponent implements OnInit {
   }
 
   // Sign In Email-Password
-  signIn() {    
+  signIn() {
     this.afAuth.signInWithEmailAndPassword(this.loginForm.value.username, this.loginForm.value.password)
       .then(() => {
         this.router.navigate(['/todos']);
@@ -51,24 +52,42 @@ export class LoginComponent implements OnInit {
       });
   }
 
-   // Sign in with Google
-   GoogleAuth() {
+  // Sign in with Google
+  GoogleAuth() {
     return this.AuthLogin(new firebase.default.auth.GoogleAuthProvider());
-  }  
+  }
 
-   // Sign in with Facebook
-   FacebookAuth() {
+  // Sign in with Facebook
+  FacebookAuth() {
     return this.AuthLogin(new firebase.default.auth.FacebookAuthProvider());
-  }  
+  }
 
   // Auth logic to run auth providers
-  AuthLogin(provider :any) {
+  AuthLogin(provider: any) {
     return this.afAuth.signInWithPopup(provider)
-    .then(() => {
+      .then(() => {
         this.router.navigate(['/todos']);
-    }).catch((result) => {
+      }).catch((result) => {
         this.errorMessage = result.message;
-    })
+      })
   }
-  
+
+  // Reset Forggot password
+  ForgotPassword() {
+    return this.afAuth.sendPasswordResetEmail(this.loginForm.value.username)
+      .then(() => {
+        window.alert('Password reset email sent, check your inbox.');
+      }).catch((error) => {
+        window.alert(error)
+      })
+  }
+
+  toggleInput(activar: boolean) {
+    return this.isActive = activar;
+  }
+  // Returns true when user is looged in and email is verified
+  get isLoggedIn(): boolean {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return (user !== null && user.emailVerified !== false) ? true : false;
+  }
 }

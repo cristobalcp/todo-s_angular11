@@ -21,13 +21,12 @@ export class TodoListComponent implements OnInit {
     private afAuth: AngularFireAuth) { }
 
   ngOnInit() {
-    // Cargamos los To Dos ya creados on Init
+    // Cargamos los To Dos del usuario ya creados on Init
     this.afAuth.user.subscribe(user => {
       if (user) {
-        console.log(user);
         this.loadTodos(user.uid);
       }
-    })
+    });
   }
 
   clickAddTodo() {
@@ -36,7 +35,6 @@ export class TodoListComponent implements OnInit {
       this.handleModalTodoFormClose.bind(this),
       this.handleModalTodoFormClose.bind(this));
   }
-
   handleModalTodoFormClose(response) {
     // is response an object?
     if (response === Object(response)) {
@@ -52,12 +50,9 @@ export class TodoListComponent implements OnInit {
       }
     }
   }
-
   loadTodos(userId: string) {
     this.todoService.getTodos(userId).subscribe(response => {
       this.todos = [];
-      console.log(response.metadata);
-
       // Iteramos sobre todos los Documents
       // y creamos un Array de TodoViews
       response.docs.forEach(value => {
@@ -77,7 +72,6 @@ export class TodoListComponent implements OnInit {
 
     });
   }
-
   checkedDone(index: number) {
     // Campo Boolean, get contrario actual
     const newDoneValue = !this.todos[index].done,

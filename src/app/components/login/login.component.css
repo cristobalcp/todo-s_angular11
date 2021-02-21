@@ -8,24 +8,71 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-   }
-   
-   .example-container > * {
-    width: 25%;
-   }
-   
-   .error {
-    color: red;
-   }
-   
-   .center {
-    text-align: center;
-   }
-   
-   .buttons-container button {
-    margin-left: 5px;
-   }
+    width: 100vw;
+}
 
-   button{
-       cursor: pointer;
-   }
+.visible-container{
+    border: 1px solid var(--form-bg-color);
+    border-radius: .25rem;
+    width: 400px;
+    max-height: 440px;
+    background-color: var(--form-bg-color);
+    color: var(--form-font);
+}
+.visible-container > * {
+    width: 100%;
+}
+
+.error {
+    color: white;
+    font-size: .8rem;
+}
+
+.center {
+    text-align: center;
+}
+
+.buttons-container button {
+margin-left: 5px;
+}
+button,
+.pointer{
+    cursor: pointer;
+}
+
+.bi.bi-eye-fill,
+.bi.bi-eye-slash-fill{
+    position: relative;
+    left: 10px;
+    top: 38px;
+    color: var(--form-font);
+}
+
+.visible-container svg:hover,
+.visible-container fieldset:hover{
+    color: #8fbbaf;
+}
+#recoverPass{
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    top: -10px;
+    left: 70px;    
+}
+a.pointer{
+  color: #5aae97;
+  font-size: .9rem;
+}
+
+button.btn.btn-primary{
+    background-color: #8fbbaf;
+    border-color: #8fbbaf;
+    font-weight: bold;
+
+}
+input#password{
+    padding-left: 45px;
+}
+hr{
+    border-top: 1px solid var(--form-font);
+}

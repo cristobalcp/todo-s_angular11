@@ -1,7 +1,7 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
