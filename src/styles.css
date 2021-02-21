@@ -10,7 +10,11 @@
     --form-font: #b3dee2ad;
 }
 
-
 *{
-    font-family: 'Poppins', sans-serif !important;
+    font-family: 'Roboto', sans-serif;
+}
+
+form *,
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Poppins', sans-serif;
 }
