@@ -51,6 +51,8 @@ export class TodoListComponent implements OnInit {
     }
   }
   loadTodos(userId: string) {
+    console.log(userId);
+    
     this.todoService.getTodos(userId).subscribe(response => {
       this.todos = [];
       // Iteramos sobre todos los Documents

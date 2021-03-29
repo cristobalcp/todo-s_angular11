@@ -1,5 +1,5 @@
 <h4 class="text-center">ToDo's List
-    
+    <!-- Btn Crear ToDo -->
     <button class="btn btn-primary ml-2" (click)="clickAddTodo()">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-plus"
             viewBox="0 0 16 16">
@@ -12,21 +12,21 @@
         </svg>
     </button>
 </h4>
-
+<!-- Created Todo's Table -->
 <table class="table table-striped" *ngIf="todos && todos.length > 0">
     <thead>
         <tr>
             <th>Done</th>
             <th>Title</th>
             <th>Created Date</th>
-            <th></th>
+            <th>Options</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let todo of todos, let index = index">
             <td><input type="checkbox" [checked]="todo.done" (change)="checkedDone(index)" /></td>
             <td [ngClass]="{'done': todo.done, 'not-done': !todo.done}">{{todo.title}}</td>
-            <td>{{todo.lastModifiedDate | date:'medium'}}</td>
+            <td>{{todo.lastModifiedDate | date:'medium' }}</td>
             <td><button class="btn btn-primary btn-edit" (click)="handleEditClick(todo)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-pencil" viewBox="0 0 16 16">

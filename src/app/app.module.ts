@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID, Inject, Injectable } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
@@ -22,11 +22,22 @@ import { TodoFormComponent } from './components/todo-form/todo-form.component';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { MenuComponent } from './components/menu/menu.component';
-import { ContactComponent } from './components/contact/contact.component';  
+import { ContactComponent } from './components/contact/contact.component';
 import { LoginComponent } from './components/login/login.component';
 
+import { HttpClientModule } from '@angular/common/http';
+// Localization
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
+import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { NotificationsComponent } from './components/notifications/notifications.component';
+import { MapsComponent } from './components/maps/maps.component';
 
+import { AgmCoreModule } from '@agm/core'
+
+registerLocaleData(localeEs, 'es');
 
 
 @NgModule({
@@ -36,7 +47,9 @@ import { LoginComponent } from './components/login/login.component';
     TodoFormComponent,
     MenuComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    NotificationsComponent,
+    MapsComponent
   ],
   imports: [
     CommonModule,
@@ -52,10 +65,20 @@ import { LoginComponent } from './components/login/login.component';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyBslvcSbs-aDAZyfOv2UlqBWOsDeym2Rs0"
+    }),
   ],
-  providers: [],
-  bootstrap: [AppComponent],
-  
+  providers: [
+    { provide: LOCALE_ID, useValue: 'es' }, // LOCALIZATION
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: HammerGestureConfig
+    }], 
+    bootstrap: [AppComponent],
+
   // Se añaden de manera dinamica
   entryComponents: [TodoFormComponent]
 

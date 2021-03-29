@@ -18,6 +18,7 @@ import * as firebase from 'firebase';
 
 // Class definition
 export class TodoFormComponent implements OnInit {
+  
   // Strict mode
   todoForm: FormGroup = this.formBuilder.group({
     title: ['', Validators.required],

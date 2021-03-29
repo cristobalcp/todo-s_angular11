@@ -3,5 +3,5 @@ export interface TodoViewModel {
     id: string;
     description: string;
     done: boolean;
-    lastModifiedDate: Date;   
+    lastModifiedDate: Date;
 }

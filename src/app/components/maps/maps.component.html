@@ -1,0 +1,12 @@
+
+<h1 class="text-center">{{ title }}</h1>
+<!-- Mapa -->
+<agm-map [latitude]="latitude" [longitude]="longitude"
+    [zoom]="zoom"
+    (mapReady)="mapReadyHandler($event)">
+
+    <agm-marker *ngIf="lastLocation.lat||lastLocation.long" 
+        [latitude]="lastLocation.lat" [longitude]="lastLocation.long"></agm-marker>
+</agm-map>
+
+<div id="output"></div>
