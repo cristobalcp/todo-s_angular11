@@ -25,7 +25,7 @@ export class MapsComponent {
   zoom = 4;
   map: google.maps.Map;
   mapClickListener: google.maps.MapsEventListener;
-  lastLocation = { lat: 0, long: 0 };
+  lastLocation = { lat: 0, lng: 0 };
 
   // Matrix API
   templateUrl: string = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Ferrol';
