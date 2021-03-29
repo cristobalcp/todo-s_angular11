@@ -97,8 +97,6 @@ export class MapsComponent {
 
         let templateUrl: string = `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Ferrol,Spain&destinations=${this.destino}&key=${this.apiKey}`;
 
-        console.log(templateUrl);
-
 
         // Http Call Geolocation API
        const service = new google.maps.DistanceMatrixService();
