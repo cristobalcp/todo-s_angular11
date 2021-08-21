@@ -1,4 +1,4 @@
-.example-container {
+.login-container {
     overflow: hidden;
     position: absolute;
     width: 100%;
@@ -15,7 +15,7 @@
     border: 1px solid var(--form-bg-color);
     border-radius: .25rem;
     width: 400px;
-    max-height: 440px;
+    max-height: 500px;
     background-color: var(--form-bg-color);
     color: var(--form-font);
 }

@@ -11,8 +11,10 @@ import * as firebase from 'firebase/app';
 })
 
 export class LoginComponent implements OnInit {
+  
   public isActive: boolean = false;
   errorMessage = '';
+
   constructor(private afAuth: AngularFireAuth,
     private router: Router,
     private fb: FormBuilder,
@@ -78,7 +80,7 @@ export class LoginComponent implements OnInit {
       .then(() => {
         window.alert('Password reset email sent, check your inbox.');
       }).catch((error) => {
-        window.alert(error)
+        this.errorMessage = error;
       })
   }
 

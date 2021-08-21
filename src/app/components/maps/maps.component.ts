@@ -35,7 +35,7 @@ export class MapsComponent {
   key = '&key=AIzaSyBslvcSbs-aDAZyfOv2UlqBWOsDeym2Rs0'
 
 
-  private mapReadyHandler(map: google.maps.Map) {
+  mapReadyHandler(map: google.maps.Map) {
     const directionsRenderer = new google.maps.DirectionsRenderer();
     const directionsService = new google.maps.DirectionsService();  
       this.map = map;
@@ -112,9 +112,7 @@ export class MapsComponent {
          (response, status) => {
            if (status !== "OK") {
              alert("Error was: " + status);
-           } else {
-             console.log('RUTA: ', response);
-             
+           } else {             
              const originList = response.originAddresses,
                 destinationList = response.destinationAddresses,
                 outputDiv = document.getElementById("output") as HTMLDivElement;
@@ -127,11 +125,9 @@ export class MapsComponent {
      
                for (let j = 0; j < results.length; j++) {
                 
-                 outputDiv.innerHTML += `Desde <strong>${originList[i]}</strong> hasta <strong>${destinationList[j]}</strong>
-                   <br>Distancia: 
-                   <strong>${results[j].distance.text}</strong>
-                   <br>Tiempo estimado:
-                   <strong>${results[j].duration.text}</strong>`;
+                 outputDiv.innerHTML += `Desde <strong>${originList[i]}</strong> hasta <strong>${destinationList[j]}</strong>: 
+                   <ul><li>Distancia: <strong>${results[j].distance.text}</strong></li> 
+                   <li> Tiempo estimado: <strong>${results[j].duration.text}</strong></li></ul>`;
                }
              }
            }
@@ -145,10 +141,7 @@ export class MapsComponent {
     directionsService: google.maps.DirectionsService,
     directionsRenderer: google.maps.DirectionsRenderer,
     destination: Object
-  ) {
-
-    console.log(destination);
-    
+  ) {    
     directionsService.route(
       {
         origin: {lat: 43.483842, lng: -8.238722 }, // Ferrol

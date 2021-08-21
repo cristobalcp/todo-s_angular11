@@ -1,3 +1,4 @@
+/// <reference types="@types/googlemaps" />
 import { Component, NgZone, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';

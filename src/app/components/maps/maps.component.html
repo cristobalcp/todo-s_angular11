@@ -1,12 +1,15 @@
 
-<h1 class="text-center">{{ title }}</h1>
-<!-- Mapa -->
-<agm-map [latitude]="latitude" [longitude]="longitude"
+<section class="container">
+    <h1 class="text-center">{{ title }}</h1>
+    
+    <!-- Mapa -->
+    <agm-map [latitude]="latitude" [longitude]="longitude"
     [zoom]="zoom"
     (mapReady)="mapReadyHandler($event)">
-
-    <agm-marker *ngIf="lastLocation.lat||lastLocation.long" 
-        [latitude]="lastLocation.lat" [longitude]="lastLocation.long"></agm-marker>
+    
+    <agm-marker *ngIf="lastLocation.lat||lastLocation.lng" 
+    [latitude]="lastLocation.lat" [longitude]="lastLocation.lng"></agm-marker>
 </agm-map>
 
-<div id="output"></div>
+<div id="output" class="mt-2"></div>
+</section>
